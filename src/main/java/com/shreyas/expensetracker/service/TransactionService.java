@@ -6,7 +6,11 @@ import com.shreyas.expensetracker.entity.*;
 import com.shreyas.expensetracker.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -44,14 +48,16 @@ public class TransactionService {
         return toResponse(saved);
     }
 
-    public List<TransactionResponse> getTransactionsForUser(String userEmail) {
+    public Page<TransactionResponse> getTransactionsForUser(String userEmail, Long categoryId,
+                                                            LocalDate startDate, LocalDate endDate,
+                                                            int page, int size) {
         User user = userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        return transactionRepository.findByUserId(user.getId())
-                .stream()
-                .map(this::toResponse)
-                .toList();
+        Pageable pageable = PageRequest.of(page, size, Sort.by("date").descending());
+
+        return transactionRepository.findFiltered(user.getId(), categoryId, startDate, endDate, pageable)
+                .map(this::toResponse);
     }
 
     private void updateAccountBalance(Account account, String type, Double amount) {

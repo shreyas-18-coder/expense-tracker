@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import java.time.LocalDate;
 
 import java.util.List;
 
@@ -27,9 +29,17 @@ public class TransactionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TransactionResponse>> getMyTransactions(Authentication authentication) {
+    public ResponseEntity<Page<TransactionResponse>> getMyTransactions(
+            Authentication authentication,
+            @RequestParam(required = false) Long categoryId,
+            @RequestParam(required = false) LocalDate startDate,
+            @RequestParam(required = false) LocalDate endDate,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
         String userEmail = authentication.getName();
-        List<TransactionResponse> transactions = transactionService.getTransactionsForUser(userEmail);
+        Page<TransactionResponse> transactions = transactionService.getTransactionsForUser(
+                userEmail, categoryId, startDate, endDate, page, size);
         return ResponseEntity.ok(transactions);
     }
 }
