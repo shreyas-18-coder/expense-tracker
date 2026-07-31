@@ -22,4 +22,14 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
             @Param("endDate") LocalDate endDate,
             Pageable pageable
     );
+    @Query("SELECT COALESCE(SUM(t.amount), 0) FROM Transaction t " +
+            "WHERE t.user.id = :userId AND t.category.id = :categoryId " +
+            "AND t.type = 'EXPENSE' " +
+            "AND FUNCTION('MONTH', t.date) = :month AND FUNCTION('YEAR', t.date) = :year")
+    Double sumExpensesByCategoryAndMonth(
+            @Param("userId") Long userId,
+            @Param("categoryId") Long categoryId,
+            @Param("month") Integer month,
+            @Param("year") Integer year
+    );
 }
