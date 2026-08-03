@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analytics - Expense Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body class="dashboard-body">
+<nav class="navbar">
+    <h2>Expense Tracker</h2>
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="transactions.html">Transactions</a>
+        <a href="budgets.html">Budgets</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="import.html">Import CSV</a>
+        <button id="logoutBtn">Logout</button>
+    </div>
+</nav>
+
+<main class="dashboard-content">
+    <h1>Analytics</h1>
+
+    <div class="filter-section">
+        <label>Month:</label>
+        <select id="viewMonth"></select>
+        <input type="number" id="viewYear" value="2026" style="width: 80px;">
+        <button id="loadAnalytics">Load</button>
+    </div>
+
+    <div class="summary-cards">
+        <div class="card">
+            <h3>Income</h3>
+            <p id="totalIncome">-</p>
+        </div>
+        <div class="card">
+            <h3>Expense</h3>
+            <p id="totalExpense">-</p>
+        </div>
+        <div class="card">
+            <h3>Net</h3>
+            <p id="netBalance">-</p>
+        </div>
+    </div>
+
+    <div class="charts-row">
+        <div class="chart-container">
+            <h3>Spending by Category</h3>
+            <canvas id="categoryChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <h3>Monthly Trend</h3>
+            <canvas id="trendChart"></canvas>
+        </div>
+    </div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/analytics.js"></script>
+</body>
+</html>
