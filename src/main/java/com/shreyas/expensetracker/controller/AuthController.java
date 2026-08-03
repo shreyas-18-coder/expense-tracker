@@ -26,7 +26,10 @@ public class AuthController {
 
         User savedUser = userService.registerUser(user);
 
-        return ResponseEntity.ok("User registered successfully with id: " + savedUser.getId());
+        return ResponseEntity.ok(Map.of(
+                "message", "User registered successfully",
+                "id", savedUser.getId()
+        ));
     }
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {

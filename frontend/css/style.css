@@ -187,3 +187,8 @@ button:hover {
     color: #dc2626;
     font-weight: bold;
 }
+.success {
+    color: #16a34a;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
