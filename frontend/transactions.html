@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transactions - Expense Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-body">
+<nav class="navbar">
+    <h2>Expense Tracker</h2>
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="transactions.html">Transactions</a>
+        <a href="budgets.html">Budgets</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="import.html">Import CSV</a>
+        <button id="logoutBtn">Logout</button>
+    </div>
+</nav>
+
+<main class="dashboard-content">
+    <h1>Transactions</h1>
+
+    <div class="form-section">
+        <h3>Add Transaction</h3>
+        <form id="transactionForm">
+            <div class="form-row">
+                <div>
+                    <label>Amount</label>
+                    <input type="number" id="amount" step="0.01" required>
+                </div>
+                <div>
+                    <label>Type</label>
+                    <select id="type" required>
+                        <option value="EXPENSE">Expense</option>
+                        <option value="INCOME">Income</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Date</label>
+                    <input type="date" id="date" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label>Description</label>
+                    <input type="text" id="description">
+                </div>
+                <div>
+                    <label>Account</label>
+                    <select id="accountSelect" required></select>
+                </div>
+                <div>
+                    <label>Category</label>
+                    <select id="categorySelect" required></select>
+                </div>
+            </div>
+            <button type="submit">Add Transaction</button>
+        </form>
+        <p id="formError" class="error"></p>
+    </div>
+
+    <div class="filter-section">
+        <label>Filter by Category:</label>
+        <select id="filterCategory">
+            <option value="">All</option>
+        </select>
+        <button id="applyFilter">Apply</button>
+    </div>
+
+    <div id="transactionsList">Loading...</div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/transactions.js"></script>
+</body>
+</html>
