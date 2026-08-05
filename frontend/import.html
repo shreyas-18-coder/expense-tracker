@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Import CSV - Expense Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-body">
+<nav class="navbar">
+    <h2>Expense Tracker</h2>
+    <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="transactions.html">Transactions</a>
+        <a href="budgets.html">Budgets</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="import.html">Import CSV</a>
+        <button id="logoutBtn">Logout</button>
+    </div>
+</nav>
+
+<main class="dashboard-content">
+    <h1>Import Transactions from CSV</h1>
+
+    <div class="form-section">
+        <p>CSV format: <code>date,description,amount,type,categoryName</code></p>
+        <p>Example: <code>2026-07-10,Movie Night,300,EXPENSE,Entertainment</code></p>
+
+        <form id="importForm">
+            <div class="form-row">
+                <div>
+                    <label>Account</label>
+                    <select id="accountSelect" required></select>
+                </div>
+                <div>
+                    <label>CSV File</label>
+                    <input type="file" id="csvFile" accept=".csv" required>
+                </div>
+            </div>
+            <button type="submit">Import</button>
+        </form>
+        <p id="formError" class="error"></p>
+    </div>
+
+    <div id="resultSection"></div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/import.js"></script>
+</body>
+</html>
