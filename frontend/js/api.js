@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = 'https://expense-tracker-production-235e.up.railway.app/api';
 
 function getToken() {
     return localStorage.getItem('token');
