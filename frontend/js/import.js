@@ -33,7 +33,7 @@ document.getElementById('importForm').addEventListener('submit', async function 
 
     try {
         const response = await fetch(
-            `http://localhost:8080/api/import/csv?accountId=${accountId}`,
+            `${API_BASE_URL}/import/csv?accountId=${accountId}`,
             {
                 method: 'POST',
                 headers: {
