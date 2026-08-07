@@ -37,6 +37,19 @@
     </div>
 
     <h2>Your Accounts</h2>
+
+    <form id="addAccountForm" class="add-account-form">
+        <input type="text" id="accountName" placeholder="Account Name" required>
+        <select id="accountType" required>
+            <option value="BANK">Bank</option>
+            <option value="CASH">Cash</option>
+            <option value="CARD">Card</option>
+        </select>
+        <input type="number" id="accountBalance" placeholder="Initial Balance" step="0.01" value="0">
+        <button type="submit">Add Account</button>
+        <span id="accountFormError" class="error-text"></span>
+    </form>
+
     <div id="accountsList">Loading accounts...</div>
 </main>
 

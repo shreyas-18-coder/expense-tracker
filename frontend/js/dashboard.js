@@ -47,5 +47,26 @@ async function loadDashboard() {
         }
     }
 }
+document.getElementById('addAccountForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
+    const errorEl = document.getElementById('accountFormError');
+    errorEl.textContent = '';
+
+    const name = document.getElementById('accountName').value.trim();
+    const type = document.getElementById('accountType').value;
+    const balance = parseFloat(document.getElementById('accountBalance').value) || 0;
+
+    try {
+        await apiRequest('/accounts', 'POST', { name, type, balance });
+
+        document.getElementById('accountName').value = '';
+        document.getElementById('accountBalance').value = '0';
+
+        loadDashboard();
+
+    } catch (error) {
+        errorEl.textContent = error.message;
+    }
+});
 
 loadDashboard();
